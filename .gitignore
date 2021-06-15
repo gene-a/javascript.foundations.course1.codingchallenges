@@ -1,2 +1,3 @@
 # ignore supplementary files
 *.pdf
+/node_modules/
