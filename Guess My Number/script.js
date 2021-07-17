@@ -15,8 +15,13 @@ const main = function () {
     document.querySelector('.message').textContent = message;
   };
 
+  const updateBackgroundColor = function (color) {
+    document.querySelector('body').style.background = color;
+  };
+
   const init = function () {
     updateMessage('Start guessing...');
+    updateBackgroundColor('#222');
     document.querySelector('.secret').textContent = limit;
     document.querySelector('.score').textContent = limit;
     document.querySelector('.guess').value = 0;
@@ -49,18 +54,24 @@ const main = function () {
       if (isNaN(parsed) || !parsed) {
         // if NaN
         updateMessage('Invalid input! 😭');
-        decreaseScore();
-      } else if (parsed < secretNumber || parsed > secretNumber) {
+      } else if (parsed !== secretNumber) {
         // else if number is less or greater
-        updateMessage('Try again! 🤔');
+        let message =
+          parsed < secretNumber
+            ? 'Too low! Try again! 🤔'
+            : 'Too high! Try again! 🤔';
+        updateMessage(message);
         decreaseScore();
       } else if (parsed === secretNumber) {
         // else if number is equal
         updateMessage('You got it! 🙌🏽');
+        updateBackgroundColor('#60b347');
         updateNumber(secretNumber);
+
         // update highscore
-        if (highscore === 0 || currentScore > highscore) {
-          document.querySelector('.highscore').textContent = currentScore;
+        if (currentScore > highscore) {
+          highscore = currentScore;
+          document.querySelector('.highscore').textContent = highscore;
         }
         isGameWon = true;
       }
