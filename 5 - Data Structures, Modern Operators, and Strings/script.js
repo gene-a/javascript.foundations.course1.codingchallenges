@@ -60,10 +60,19 @@ const teamNameProperties = [team1PropertyName, team2PropertyName, 'x'];
 console.log(
   `Odd of victory ${game.team1}: ${game?.odds[teamNameProperties[0]]}`
 );
+console.log(`Odd of victory draw: ${game?.odds[teamNameProperties[2]]}`);
 console.log(
   `Odd of victory ${game.team2}: ${game?.odds[teamNameProperties[1]]}`
 );
-console.log(`Odd of victory draw: ${game?.odds[teamNameProperties[2]]}`);
+
+// Alternate solution to print odds but with template
+for (const [key, value] of Object.entries(game.odds)) {
+  console.log(
+    `Odd of ${key === 'x' ? 'draw' : 'victory'} ${
+      key === 'x' ? '' : game[key]
+    }: ${value}`
+  );
+}
 
 // Dynamically create an object through code
 const scorers = {};
