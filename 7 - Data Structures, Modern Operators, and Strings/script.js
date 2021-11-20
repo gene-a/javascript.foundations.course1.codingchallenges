@@ -5,8 +5,8 @@ document.body.append(document.createElement('button'));
 
 const displaySanitizedText = function (inputValue) {
   const values = inputValue.split('\n');
-  let valueIndex = 1;
-  for (const value of values) {
+
+  for (const [valueIndex, value] of values.entries()) {
     let [outputString, ...restOfString] = value.trim().split('_');
     outputString = outputString.toLowerCase();
     for (let i = 0; i < restOfString.length; i++) {
@@ -16,9 +16,12 @@ const displaySanitizedText = function (inputValue) {
     }
     let outputPaddedSpace = outputString.padEnd(30, ' ');
     let outputPaddedCheck = outputPaddedSpace.padEnd(
-      outputPaddedSpace.length + valueIndex++,
+      outputPaddedSpace.length + valueIndex + 1,
       '✅'
     );
+
+    // alternate solution
+    // let outputPaddedCheck = outputPaddedSpace + '✅'.repeat(valueIndex + 1);
 
     console.log(outputPaddedCheck);
   }
