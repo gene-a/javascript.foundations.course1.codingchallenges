@@ -11,18 +11,19 @@ const poll = {
     displayMessage += `(Write option number)`;
 
     const input = Number(window.prompt(displayMessage, ''));
-    if (input >= 0) {
-      if (input >= 0 && input < this.answers.length) {
-        this.answers[input] += 1;
-        this.displayResults();
-      } else {
-        window.alert(`Invalid input!`);
-        return;
-      }
+    // Alternate way: typeof input === 'number' && input >= 0 && input < this.answers.length && this.answers[input] += 1;
+    if (
+      typeof input === 'number' &&
+      input >= 0 &&
+      input < this.answers.length
+    ) {
+      this.answers[input] += 1;
     } else {
       window.alert(`Invalid input!`);
       return;
     }
+    this.displayResults();
+    this.displayResults(`string`);
   },
   displayResults(type = `array`) {
     switch (type) {
@@ -54,3 +55,9 @@ const testDataObject2 = {
 const mutatedDisplayResults2 = poll.displayResults.bind(testDataObject2);
 mutatedDisplayResults2(`string`);
 mutatedDisplayResults2();
+
+// Alternate on mutating the function:
+// poll.displayResults.call(testDataObject1, `string`);
+// poll.displayResults.call(testDataObject1);
+// poll.displayResults.call(testDataObject2, `string`);
+// poll.displayResults.call(testDataObject2);
