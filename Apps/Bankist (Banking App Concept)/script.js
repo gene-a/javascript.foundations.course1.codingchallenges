@@ -61,9 +61,13 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-// TODO: Display movements/transactions function
-// TODO: Display total balance
-// TODO: createUserNames function
+// TODO: Calculate, Display movements/transactions function
+// TODO: Calculate, Display total balance
+// TODO: createUserNames function (first letter of first name(s) + last name)
+/* TODO: Calculate, Display summary (bottom part of screen where in/out/interest is displayed) 
+         incomes is total of everything beyond 0, out is everything under 0
+         for interest we only apply the interest to deposits (mov > 0) we multiply by 1.2/100 we exclude interest under 1
+*/
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
