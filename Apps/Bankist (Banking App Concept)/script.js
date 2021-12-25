@@ -106,6 +106,36 @@ const accounts = [account1, account2, account3, account4];
          incomes is total of everything beyond 0, out is everything under 0
          for interest we only apply the interest to deposits (mov > 0) we multiply by 1.2/100 we exclude interest under 1
   */
+  const displaySummary = function (movements) {
+    const movementsOverZero = movements.filter(function (movement) {
+      return movement > 0;
+    });
+
+    const incomeTotal = movementsOverZero.reduce(function (acc, movement) {
+      return acc + movement;
+    }, 0);
+
+    const outTotal = movements
+      .filter(function (movement) {
+        return movement < 0;
+      })
+      .reduce(function (acc, movement) {
+        return acc + movement;
+      }, 0);
+
+    const interestTotal = movementsOverZero
+      .map(function (movement) {
+        return (movement * 1.2) / 100;
+      })
+      .filter(function (movement) {
+        return movement > 0;
+      })
+      .reduce(function (acc, movement) {
+        return acc + movement;
+      }, 0);
+
+    // TODO: Change display text
+  };
 
   const init = function () {
     // TODO: For testing we display everything just on account 1
